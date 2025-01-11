@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .student-detail p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .status {
+            font-weight: bold;
+            color: green;
+        }
+        .status.inactive {
+            color: red;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function confirmNavigation() {
+            return confirm('Are you sure you want to go back to the student list?');
+        }
+    </script>
+</head>
+<body>
+    <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+    <div class="container">
+        <div class="student-detail">
+            <p>Email: {{ student.email }}</p>
+            <p>Enrollment Number: {{ student.enrollment_number }}</p>
+            <p>Date of Birth: {{ student.date_of_birth }}</p>
+            <p>Grade: {{ student.grade }}</p>
+            <p>Date Enrolled: {{ student.date_enrolled }}</p>
+            <p class="status {% if student.is_active %}active{% else %}inactive{% endif %}">
+                Status: {% if student.is_active %}Active{% else %}Inactive{% endif %}
+            </p>
+        </div>
+        <a href="{% url 'student_list' %}" onclick="return confirmNavigation()">Back to List</a>
+    </div>
+</body>
+</html>
